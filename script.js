@@ -47,34 +47,36 @@ function createSquare() {
 }
 
 for (let i = 0; i < 5; i++) {
-const square = createSquare();
-container.appendChild(square);
+    const square = createSquare();
+    container.appendChild(square);
 }
 
 // 2. Дано 5 квадратов. Каждый по клику меняет цвет (синий -> зеленый -> желтый)
 
-function createColorSquare() {
+const colorsArray = ["blue", "green", "yellow"];
+
+function createColorSquare(array) {
     const square = document.createElement("div");
     square.classList.add("square", "blue");
-    square.addEventListener("click", ()=> {
-        if (square.classList.contains("blue")) {
-            square.classList.remove("blue");
-            square.classList.add("green");
-        } else if (square.classList.contains("green")) {
-            square.classList.remove("green");
-            square.classList.add("yellow");
-        } else if (square.classList.contains("yellow")) {
-            square.classList.remove("yellow");
-            square.classList.add("blue")
+    square.addEventListener("click", () => {
+        for (let i = 0; i < array.length; i++) {
+            if (square.classList.contains(array[i])) {
+                square.classList.remove(array[i]);
+                if (array[i + 1] !== undefined) {
+                    square.classList.add(array[i + 1]);
+                } else {
+                    square.classList.add(array[0]);
+                }
+                return;
+            }
         }
-
     });
 
     return square;
 }
 
 for (let i = 0; i < 5; i++) {
-    const colorSquare = createColorSquare();
+    const colorSquare = createColorSquare(colorsArray);
     container.appendChild(colorSquare);
 }
 
@@ -86,14 +88,14 @@ document.querySelector("body").appendChild(wrapper);
 
 const array = ["Audi", "Porsche", "BMW", "Mercedes", "Toyota", "Nissan"];
 
-let generateList = function(array) {
+let generateList = function (array) {
     const ul = document.createElement("ul");
-    array.forEach(function(item) {
+    array.forEach(function (item) {
         let li = document.createElement("li");
         li.innerText = item;
-        li.addEventListener("click", ()=> {
+        li.addEventListener("click", () => {
             let selected = ul.querySelectorAll(".selected");
-            for(let elem of selected) {
+            for (let elem of selected) {
                 elem.classList.remove("selected");
             }
             li.classList.add("selected");
@@ -103,13 +105,5 @@ let generateList = function(array) {
 
     return ul;
 };
-
-// function select(li) {
-//     let selected = li.querySelectorAll(".selected");
-//     for(let elem of selected) {
-//         elem.classList.remove("selected");
-//     }
-//     li.classList.add("selected");
-// }
 
 wrapper.appendChild(generateList(array));
