@@ -1,0 +1,61 @@
+.body {
+    margin: 0;
+}
+
+.container {
+    padding: 20px;
+    display: grid;
+    grid-gap: 30px;
+    grid-template-columns: repeat(5, 1fr);
+}
+
+.square {
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 10px;
+    height: 80px;
+    width: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 30px;
+    font-family: sans-serif;
+}
+
+.buttons-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+
+}
+
+.buttons-container button {
+    height: 34px;
+    width: 34px;
+    font-size: 26px;
+}
+
+.blue {
+    background-color: dodgerblue;
+}
+
+.green {
+    background-color: greenyellow;
+}
+
+.yellow {
+    background-color: yellow;
+}
+
+ul {
+    max-width: 120px;
+}
+
+li {
+    cursor: pointer;
+}
+
+.selected {
+    background-color: greenyellow;
+}
